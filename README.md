@@ -18,11 +18,74 @@ npm install scope-store dexie
 ```js
 import { SpaceStoreInstance } from 'scope-store'
 
-it('set & get', async () => {
-  const userStore = new SpaceStoreInstance('user')
-  await userStore.set('name', '张三')
-  const name = await userStore.get('name')
-  expect(name).toEqual('张三')
+it('test for md Example', async () => {
+  const store = new SpaceStoreInstance('user')
+  // 设置数据
+  await store.set('user', { name: 'John Doe', age: 30 })
+
+  // 获取数据
+  const userData = await store.get('user')
+  expect(userData).toEqual({ name: 'John Doe', age: 30 })
+
+  // 设置带有过期时间的数据
+  await store.set('sessionToken', 'abc123', (1 / 24 / 60 / 60) * 2) // 2秒后过期
+
+  await sleep(2.1)
+  // 2秒后尝试获取数据
+  const token = await store.getByStrict('sessionToken')
+  expect(token).toEqual(undefined) // 输出: undefined，因为数据已过期
+
+  // 设置多个键值对
+  await store.store.set('user', {
+    user_one: { name: 'Alice', age: 25 },
+    user_two: { name: 'Bob', age: 30 },
+  })
+
+  // 使用正则表达式获取用户数据
+  const allUserData = await store.findByReg(/^user_.*$/, 'entries')
+  expect(allUserData).toMatchInlineSnapshot(`
+      {
+        "user_one": {
+          "age": 25,
+          "name": "Alice",
+        },
+        "user_two": {
+          "age": 30,
+          "name": "Bob",
+        },
+      }
+    `)
+
+  const allUserData2 = await store.findByReg('user_.*', 'entries')
+  expect(allUserData2).toMatchInlineSnapshot(`
+      {
+        "user_one": {
+          "age": 25,
+          "name": "Alice",
+        },
+        "user_two": {
+          "age": 30,
+          "name": "Bob",
+        },
+      }
+    `)
+  expect(allUserData).toEqual(allUserData2)
+
+  const UserOneData = await store.findByReg('.*_one', 'entries')
+  expect(UserOneData).toMatchInlineSnapshot(`
+      {
+        "user_one": {
+          "age": 25,
+          "name": "Alice",
+        },
+      }
+    `)
+
+  // 清理所有过期数据
+  await store.cleanAllExpireData()
+
+  // 清理所有数据
+  await store.removeAll()
 })
 ```
 
