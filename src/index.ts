@@ -152,9 +152,9 @@ export class SpaceStoreInstance {
     const expireDate = item[`${key}_expire`]
     if (expireDate && Date.now() >= Number(expireDate)) {
       await this.remove(key)
-      return null
+      return undefined
     }
-    return item[key] || null
+    return item[key]
   }
 
   async findByReg(pattern: RegExp | string, mode: 'keys' | 'values' | 'entries' | 'one' = 'keys'): Promise<any> {

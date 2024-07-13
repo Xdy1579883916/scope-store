@@ -1,7 +1,7 @@
 {
   "name": "scope-store",
   "type": "module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "packageManager": "pnpm@9.4.0",
   "description": "Based on IndexDB, driven by Dexie, providing kv storage capability with namespace",
   "author": "XiaDeYu <1579883916@qq.com>",

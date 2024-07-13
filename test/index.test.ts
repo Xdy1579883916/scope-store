@@ -45,7 +45,7 @@ describe('should', () => {
 
     // 此时应该过期了
     await sleep(1.1)
-    expect(await store.getByStrict('name2')).toEqual(null)
+    expect(await store.getByStrict('name2')).toEqual(undefined)
   })
   it('删除多个key', async () => {
     await store.removeByKeys(['abc', 'data1', 'name'])
@@ -104,7 +104,7 @@ describe('should', () => {
     await sleep(1.1)
     // 此时1、2应该都过期了, 所有过期的值都被清理
     // getByStrict 会自动删除过期值
-    expect(await store.getByStrict('name1')).toEqual(null)
+    expect(await store.getByStrict('name1')).toEqual(undefined)
     // get 可以获取过期的值, 可以调用cleanAllExpireData主动清理所有过期值
     await store.cleanAllExpireData()
     expect(await store.get('name2')).toEqual(undefined)
