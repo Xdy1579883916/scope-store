@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      dexie:
+        specifier: ^4.0.8
+        version: 4.0.8
     devDependencies:
       '@antfu/eslint-config':
         specifier: ^2.22.0
@@ -29,6 +33,9 @@ importers:
       esno:
         specifier: ^4.7.0
         version: 4.7.0
+      fake-indexeddb:
+        specifier: ^6.0.0
+        version: 6.0.0
       lint-staged:
         specifier: ^15.2.7
         version: 15.2.7
@@ -1258,6 +1265,9 @@ packages:
   destr@2.0.3:
     resolution: {integrity: sha512-2N3BOUU4gYMpTP24s5rF5iP7BDr7uNTCs4ozw3kf/eKfvWSIu93GEBi5m427YoyJoeOzQ5smuu4nNAPGb8idSQ==}
 
+  dexie@4.0.8:
+    resolution: {integrity: sha512-1G6cJevS17KMDK847V3OHvK2zei899GwpDiqfEXHP1ASvme6eWJmAp9AU4s1son2TeGkWmC0g3y8ezOBPnalgQ==}
+
   diff-sequences@29.6.3:
     resolution: {integrity: sha512-EjePK1srD3P08o2j4f0ExnylqRs5B9tJjcp9t1krH2qRi8CCdsYfwe9JgSLurFBWwq4uOlipzfk5fHNvwFKr8Q==}
     engines: {node: ^14.15.0 || ^16.10.0 || >=18.0.0}
@@ -1556,6 +1566,10 @@ packages:
   execa@8.0.1:
     resolution: {integrity: sha512-VyhnebXciFV2DESc+p6B+y0LjSm0krU4OgJN44qFAhBY0TJ+1V61tYD2+wHusZ6F9n5K+vl8k0sTy7PEfV4qpg==}
     engines: {node: '>=16.17'}
+
+  fake-indexeddb@6.0.0:
+    resolution: {integrity: sha512-YEboHE5VfopUclOck7LncgIqskAqnv4q0EWbYCaxKKjAvO93c+TJIaBuGy8CBFdbg9nKdpN3AuPRwVBJ4k7NrQ==}
+    engines: {node: '>=18'}
 
   fast-deep-equal@3.1.3:
     resolution: {integrity: sha512-f3qQ9oQy9j2AhBe/H9VC91wLmKBCCU/gDOnKNAYG5hswO7BLKj09Hc5HYNz9cGI++xlpDCIgDaitVs03ATR84Q==}
@@ -4113,6 +4127,8 @@ snapshots:
 
   destr@2.0.3: {}
 
+  dexie@4.0.8: {}
+
   diff-sequences@29.6.3: {}
 
   dir-glob@3.0.1:
@@ -4544,6 +4560,8 @@ snapshots:
       onetime: 6.0.0
       signal-exit: 4.1.0
       strip-final-newline: 3.0.0
+
+  fake-indexeddb@6.0.0: {}
 
   fast-deep-equal@3.1.3: {}
 

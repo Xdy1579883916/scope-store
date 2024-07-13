@@ -1,17 +1,17 @@
 {
-  "name": "pkg-placeholder",
+  "name": "scope-store",
   "type": "module",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "packageManager": "pnpm@9.4.0",
-  "description": "_description_",
+  "description": "Based on IndexDB, driven by Dexie, providing kv storage capability with namespace",
   "author": "XiaDeYu <1579883916@qq.com>",
   "license": "MIT",
-  "homepage": "https://github.com/Xdy1579883916/pkg-placeholder#readme",
+  "homepage": "https://github.com/Xdy1579883916/scope-store#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Xdy1579883916/pkg-placeholder.git"
+    "url": "git+https://github.com/Xdy1579883916/scope-store.git"
   },
-  "bugs": "https://github.com/Xdy1579883916/pkg-placeholder/issues",
+  "bugs": "https://github.com/Xdy1579883916/scope-store/issues",
   "keywords": [],
   "sideEffects": false,
   "exports": {
@@ -36,7 +36,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "unbuild",
+    "build": "vitest --run && unbuild",
     "dev": "unbuild --stub",
     "lint": "eslint .",
     "prepublishOnly": "nr build",
@@ -44,7 +44,15 @@
     "start": "esno src/index.ts",
     "test": "vitest",
     "typecheck": "tsc --noEmit",
-    "prepare": "simple-git-hooks"
+    "prepare": "simple-git-hooks",
+    "push": "npm publish"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "dependencies": {
+    "dexie": "^4.0.8"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^2.22.0",
@@ -54,6 +62,7 @@
     "bumpp": "^9.4.1",
     "eslint": "^9.7.0",
     "esno": "^4.7.0",
+    "fake-indexeddb": "^6.0.0",
     "lint-staged": "^15.2.7",
     "pnpm": "^9.5.0",
     "rimraf": "^5.0.9",
