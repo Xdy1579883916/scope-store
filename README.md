@@ -1,11 +1,13 @@
-# scope-store
+# SpaceStore
 
 [![npm version][npm-version-src]][npm-version-href]
 [![npm downloads][npm-downloads-src]][npm-downloads-href]
 [![bundle][bundle-src]][bundle-href]
 [![License][license-src]][license-href]
 
-Based on IndexDB, driven by Dexie, providing kv storage capability with namespace
+## Introduction
+#### A JavaScript storage utility library based on Dexie, which provides a simple and easy-to-use API for managing and manipulating local storage data. This library is highly suitable for scenarios that require data storage and retrieval in the browser or Node.js environment.
+#### 基于 Dexie 的 JavaScript 存储工具库，它提供了一套简单易用的 API 来管理和操作本地存储数据。该库非常适合需要在浏览器或 Node.js 环境中进行数据存储和检索的场景。
 
 ## install
 
@@ -91,6 +93,38 @@ it('test for md Example', async () => {
 
 ## More
 [Test Example](test/index.test.ts)
+
+## API 文档
+
+### 构造函数
+
+- `constructor(namespace?: string)`: 创建一个新的存储实例。`namespace` 是可选的，默认为 `'default'`。
+
+### 实例方法
+
+- `async _get(keys?: string | string[] | { [key: string]: any } | null)`: 获取指定键或键数组的值。
+
+- `async keys()`: 获取当前命名空间下的所有键。
+
+- `async set(key: string, value: any, expireDate?: number)`: 设置一个键值对，可选地设置过期时间。
+
+- `async setByKeyArr(keyArr: string[], value: any, opt: TSetByKeyArrOpt = {})`: 根据键数组设置值，可以指定连接符、是否过滤无效值和过期时间。
+
+- `async get(key?: string)`: 获取指定键的值，如果未指定键，则获取所有键的值。
+
+- `async getByStrict(key?: string)`: 严格模式下获取键的值，如果键已过期则自动删除并返回 `undefined`。
+
+- `async findByReg(pattern: RegExp | string, mode: 'keys' | 'values' | 'entries' | 'one' = 'keys')`: 根据正则表达式查找键或值。
+
+- `async remove(key: string)`: 移除指定键的值。
+
+- `async removeByKeys(keys: string[])`: 根据键数组批量移除值。
+
+- `async removeAll()`: 清除当前命名空间下的所有数据。
+
+- `async removeByReg(pattern: RegExp | string)`: 根据正则表达式移除键值对。
+
+- `async cleanAllExpireData()`: 清除所有过期的数据。
 
 ## License
 
